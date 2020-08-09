@@ -7,7 +7,8 @@ public class Player_Pickup : MonoBehaviour
 {
 
     public Text CountText;
-    public GameObject WinMenuUI;
+
+    public GameObject ExitDoor;
 
     private int count;
 
@@ -16,6 +17,7 @@ public class Player_Pickup : MonoBehaviour
     {
         count = 0;
         SetCountText ();
+        ExitDoor.SetActive(true);
     }
 
       private void OnTriggerEnter2D(Collider2D other) //Picks up items labled with tag 'Pick Up'
@@ -34,10 +36,7 @@ public class Player_Pickup : MonoBehaviour
             CountText.text = "Shinies Collected: " + count.ToString ();
             if (count >= 10)
             {
-                WinMenuUI.SetActive(true);
-                Time.timeScale = 0f;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true; 
+                ExitDoor.SetActive(false);
             }
 
         }
